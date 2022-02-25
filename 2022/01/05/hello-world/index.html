@@ -53,16 +53,14 @@
     
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.1"></head>
 
 
-<body>
-
-<div class="layout">
-    <div class="bg-gradient"></div>
-    <div class="bg-pattern"></div>
-
-    <div class="menu-bg">
+    <body>
+        <div class="layout">
+            <div class="bg-gradient"></div>
+            <div class="bg-pattern"></div>
+            <div class="menu-bg">
     <div class="menu-container">
         <ul>
             
@@ -103,21 +101,62 @@
 <nav>
     <a href="#menu"></a>
 </nav>
-
-    <div class="container">
-        <div class="row">
+            <div class="container">
+                <div class="row">
     <div class="col-sm-12">
 
         <header>
     <div class="logo">
-        <span class="logo-icon" aria-hidden="true">
+        <div class="logo-icon" aria-hidden="true">
             
-                OnO
+                <span id="eye-ball-l">O</span><span id="mouth">n</span><span id="eye-ball-r">O</span>
             
-        </span>
+        </div>
         
     </div>
 </header>
+
+<script>
+    var eyeBallLeft = document.getElementById('eye-ball-l');
+    var eyeBallRight = document.getElementById('eye-ball-r');
+    var mouth = document.getElementById('mouth');
+    if(eyeBallLeft && eyeBallRight && mouth){
+        addEventListener('mousemove', function(e) {
+            var e = e || window.event;
+            let leftEye = setPos(eyeBallLeft,e,3);
+            let rightEye = setPos(eyeBallRight,e,3);
+            let centerMouse = setPos(mouth,e,2);
+        },false)
+
+        setInterval(wink, 5000);
+    }
+    function setPos(item,moveEvent,moveRange){
+        let leftX = moveEvent.clientX - (item.offsetLeft - item.offsetWidth / 2);
+        let leftY = moveEvent.clientY - (item.offsetTop - item.offsetHeight / 2);
+        let leftPointRadius = Math.floor(radius({ x: leftX, y: leftY }));
+        let pointRadian = Math.atan2(leftX, leftY);
+        let itemXY= posXY(moveRange, pointRadian);
+        item.style.cssText = `left:${itemXY.x}px; top: ${itemXY.y}px;`;
+    }
+    function posXY(radius, radian) {
+        return {
+            x: Math.sin(radian) * radius,
+            y: Math.cos(radian) * radius,
+        }
+    }
+    function radius(pos) {
+        return Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
+    }
+
+    function wink(){
+        eyeBallLeft.innerText = "—";
+        eyeBallRight.innerText = "—";
+        setTimeout(function(){
+            eyeBallLeft.innerText = "O";
+            eyeBallRight.innerText = "O";
+        },50);
+    }
+</script>
 
         <section class="main">
             
@@ -161,22 +200,20 @@
     </div>
 </div>
 
-    </div>
-
-    <footer class="footer-content">
+            </div>
+            <footer class="footer-content">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="footer-copyright">
-                    Copyright © 2022 | Theme by <a target="_blank" rel="noopener" href="http://www.codeblocq.com/">Jonathan Klughertz</a> |  Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+                    Copyright © 2022 | Theme by <a target="_blank" rel="noopener" href="http://www.codeblocq.com/">Jonathan Klughertz</a> | Remix by <a target="_blank" rel="noopener" href="https://github.com/BinlaSmile">Binla</a> |  Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
                 </div>
             </div>
         </div>
     </div>
 </footer>
-</div>
-
-<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+        </div>
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
@@ -186,7 +223,6 @@
 
 
 
-
-</body>
+    </body>
 
 </html>

@@ -14,6 +14,7 @@ body {
 }
 .layout .container {
   flex: 1;
+  width: 100vw;
 }
 .bg-gradient {
   background: #a1c1e2;
@@ -74,7 +75,7 @@ a:hover {
   }
 }
 header {
-  padding-top: 100px;
+  padding: 100px 0px;
 }
 header .logo {
   margin: 0 auto;
@@ -102,21 +103,26 @@ header .logo .title {
   font-family: "SimHei", sans-serif;
   text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 15px #7abcfd;
 }
+header .logo #eye-ball-l,
+header .logo #eye-ball-r,
+header .logo #mouth {
+  position: relative;
+  transition: 0.1s;
+}
 section.main {
   color: #d7ecff;
 }
 section.main .post {
-  margin-top: 200px;
+  margin-bottom: 120px;
 }
 @media (max-width: 33.9em) {
   section.main .post {
-    margin-top: 60px;
+    margin-bottom: 60px;
   }
 }
 section.main .post .post-header {
   position: relative;
   width: 100%;
-  margin: 0 10px;
 }
 section.main .post .post-header:before {
   position: absolute;
@@ -126,8 +132,8 @@ section.main .post .post-header:before {
   left: -5px;
   content: "  ";
   border-left: 1px solid #d7ecff;
-  border-bottom: 1px solid #d7ecff;
   border-top: 1px solid #d7ecff;
+  border-bottom: 1px solid #d7ecff;
   transition: left 0.3s ease;
 }
 @media (max-width: 33.9em) {
@@ -153,10 +159,10 @@ section.main .post .post-header:after {
   }
 }
 section.main .post .post-header h1.title {
-  text-align: center;
   font-family: "SimHei", sans-serif;
   text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 15px #7abcfd;
   cursor: pointer;
+  margin: 8px 15px;
 }
 section.main .post .post-header h1.title a,
 section.main .post .post-header h1.title a:link,
@@ -170,13 +176,11 @@ section.main .post .post-header h1.title a:active {
   }
 }
 section.main .post .post-header .post-info {
-  margin-top: 15px;
-  text-align: center;
-  text-transform: uppercase;
+  margin: 8px 15px;
   font-family: "SimHei", sans-serif;
 }
 section.main .post .post-header .post-info span {
-  padding: 10px;
+  font-family: "SimHei", sans-serif;
 }
 section.main .post .post-header.hover:before {
   left: 5px;
@@ -184,49 +188,12 @@ section.main .post .post-header.hover:before {
 section.main .post .post-header.hover:after {
   right: 5px;
 }
-section.main .post .content {
-  margin-top: 65px;
-}
-@media (max-width: 33.9em) {
-  section.main .post .content {
-    margin-top: 40px;
-    text-align: justify;
-  }
-}
-section.main .post .content .gallery-container {
-  width: 100%;
-  display: block;
-}
-section.main .post .content .gallery-container:after {
-  content: " ";
-  visibility: hidden;
-  display: block;
-  height: 50px;
-  clear: both;
-}
-section.main .post .content .gallery-container .picture-container {
-  width: 25%;
-  float: left;
-  min-width: 200px;
-}
-section.main .post .content .gallery-container .picture-container a {
-  border: none;
-}
-section.main .post .content .gallery-container .picture-container a .img-thumbnail {
-  border: none;
-  background: transparent;
-  padding-right: 20px;
-  width: 100%;
-}
-section.main .post .read-more {
-  margin: 10px auto;
-  font-family: "SimHei", sans-serif;
-  text-transform: uppercase;
-}
+section.main .post .content,
 section.main .post .comments {
   margin-top: 120px;
 }
 @media (max-width: 33.9em) {
+  section.main .post .content,
   section.main .post .comments {
     margin-top: 60px;
   }
@@ -239,6 +206,198 @@ section.main .post-tags {
 section.main .post-tags a,
 section.main .post-tags i {
   margin-right: 15px;
+}
+section.main .snapshot {
+  position: relative;
+  margin-bottom: 120px;
+  background: rgba(44,61,75,0.5);
+  transition: background 0.3s ease;
+}
+@media (max-width: 33.9em) {
+  section.main .snapshot {
+    margin-bottom: 60px;
+  }
+}
+section.main .snapshot .snapshot-header {
+  padding: 8px 15px;
+  width: 100%;
+}
+section.main .snapshot .snapshot-header h1.title {
+  font-family: "SimHei", sans-serif;
+  text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 15px #7abcfd;
+  cursor: pointer;
+}
+section.main .snapshot .snapshot-header h1.title a,
+section.main .snapshot .snapshot-header h1.title a:link,
+section.main .snapshot .snapshot-header h1.title a:visited,
+section.main .snapshot .snapshot-header h1.title a:active {
+  border-bottom: none;
+}
+@media (max-width: 33.9em) {
+  section.main .snapshot .snapshot-header h1.title {
+    font-size: 2.5em;
+  }
+}
+section.main .snapshot .snapshot-header .snapshot-info {
+  padding: 8px 15px;
+  font-family: "SimHei", sans-serif;
+}
+section.main .snapshot .snapshot-header .snapshot-info span {
+  font-family: "SimHei", sans-serif;
+}
+section.main .snapshot .content {
+  padding: 30px 15px 10px 15px;
+}
+@media (max-width: 33.9em) {
+  section.main .snapshot .content {
+    margin-top: 20px;
+    text-align: justify;
+  }
+}
+section.main .snapshot .content .gallery-container {
+  width: 100%;
+  display: block;
+}
+section.main .snapshot .content .gallery-container:after {
+  content: " ";
+  visibility: hidden;
+  display: block;
+  height: 50px;
+  clear: both;
+}
+section.main .snapshot .content .gallery-container .picture-container {
+  width: 25%;
+  float: left;
+  min-width: 200px;
+}
+section.main .snapshot .content .gallery-container .picture-container a {
+  border: none;
+}
+section.main .snapshot .content .gallery-container .picture-container a .img-thumbnail {
+  border: none;
+  background: transparent;
+  padding-right: 20px;
+  width: 100%;
+}
+section.main .snapshot .snapshot-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+section.main .snapshot .snapshot-footer .read-more {
+  margin: 10px auto;
+  font-family: "SimHei", sans-serif;
+  border-bottom: none;
+}
+section.main .snapshot .snapshot-footer .read-more i {
+  transition: margin 0.3s ease;
+}
+section.main .snapshot .snapshot-footer .read-more:hover i {
+  margin-left: 5px;
+}
+section.main .snapshot:before {
+  position: absolute;
+  padding: 5px;
+  top: -10px;
+  bottom: -10px;
+  left: -15px;
+  content: "  ";
+  border-left: 1px solid #d7ecff;
+  border-top: 1px solid #d7ecff;
+  border-bottom: 1px solid #d7ecff;
+  transition: 0.3s ease;
+}
+@media (max-width: 33.9em) {
+  section.main .snapshot:before {
+    display: none;
+  }
+}
+section.main .snapshot:after {
+  position: absolute;
+  content: "  ";
+  padding: 5px;
+  top: -10px;
+  bottom: -10px;
+  right: -15px;
+  border-right: 1px solid #d7ecff;
+  border-bottom: 1px solid #d7ecff;
+  border-top: 1px solid #d7ecff;
+  transition: 0.3s ease;
+}
+@media (max-width: 33.9em) {
+  section.main .snapshot:after {
+    display: none;
+  }
+}
+section.main .snapshot:hover {
+  animation: blink 10s ease-out infinite;
+}
+section.main .snapshot:hover:before {
+  left: 0px;
+  border-left: 5px solid #d7ecff;
+  border-top: 5px solid #d7ecff;
+  border-bottom: 5px solid #d7ecff;
+}
+section.main .snapshot:hover:after {
+  right: 0px;
+  border-right: 5px solid #d7ecff;
+  border-bottom: 5px solid #d7ecff;
+  border-top: 5px solid #d7ecff;
+}
+@-moz-keyframes blink {
+  5% {
+    background: rgba(86,122,151,0.5);
+  }
+  40% {
+    background: rgba(44,61,75,0.5);
+  }
+  60% {
+    background: rgba(86,122,151,0.5);
+  }
+  80% {
+    background: rgba(44,61,75,0.5);
+  }
+}
+@-webkit-keyframes blink {
+  5% {
+    background: rgba(86,122,151,0.5);
+  }
+  40% {
+    background: rgba(44,61,75,0.5);
+  }
+  60% {
+    background: rgba(86,122,151,0.5);
+  }
+  80% {
+    background: rgba(44,61,75,0.5);
+  }
+}
+@-o-keyframes blink {
+  5% {
+    background: rgba(86,122,151,0.5);
+  }
+  40% {
+    background: rgba(44,61,75,0.5);
+  }
+  60% {
+    background: rgba(86,122,151,0.5);
+  }
+  80% {
+    background: rgba(44,61,75,0.5);
+  }
+}
+@keyframes blink {
+  5% {
+    background: rgba(86,122,151,0.5);
+  }
+  40% {
+    background: rgba(44,61,75,0.5);
+  }
+  60% {
+    background: rgba(86,122,151,0.5);
+  }
+  80% {
+    background: rgba(44,61,75,0.5);
+  }
 }
 .featherlight .featherlight-content {
   background: transparent;
@@ -367,9 +526,6 @@ section.main .post .content .video-container embed {
   width: 100%;
   height: 100%;
   margin-top: 0;
-}
-.archive-container {
-  margin-top: 50px;
 }
 @media (max-width: 33.9em) {
   .archive-container {
