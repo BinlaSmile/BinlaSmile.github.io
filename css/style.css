@@ -191,6 +191,7 @@ section.main .post .post-header.hover:after {
 section.main .post .content,
 section.main .post .comments {
   margin-top: 120px;
+  word-wrap: break-word;
 }
 @media (max-width: 33.9em) {
   section.main .post .content,
@@ -247,6 +248,12 @@ section.main .snapshot .snapshot-header .snapshot-info span {
 }
 section.main .snapshot .content {
   padding: 30px 15px 10px 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
 }
 @media (max-width: 33.9em) {
   section.main .snapshot .content {
@@ -329,7 +336,7 @@ section.main .snapshot:after {
   }
 }
 section.main .snapshot:hover {
-  animation: blink 10s ease-out infinite;
+  animation: blink 10s ease infinite;
 }
 section.main .snapshot:hover:before {
   left: 0px;
@@ -398,6 +405,36 @@ section.main .snapshot:hover:after {
   80% {
     background: rgba(44,61,75,0.5);
   }
+}
+section.main .post-more {
+  margin-bottom: 120px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: rgba(44,61,75,0.5);
+  transition: 0.3s ease;
+}
+section.main .post-more .action-btn {
+  margin: 10px;
+  font-family: "SimHei", sans-serif;
+  border-bottom: none;
+  position: relative;
+}
+section.main .post-more .action-btn .prefix {
+  position: absolute;
+  right: -30px;
+  transition: 1s ease;
+}
+section.main .post-more .action-btn .suffix {
+  position: absolute;
+  left: -30px;
+  transition: 1s ease;
+}
+section.main .post-more .action-btn:hover .prefix {
+  right: -60px;
+}
+section.main .post-more .action-btn:hover .suffix {
+  left: -60px;
 }
 .featherlight .featherlight-content {
   background: transparent;
