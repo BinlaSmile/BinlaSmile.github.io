@@ -63,37 +63,37 @@
         <ul>
             
             <li class="menu-item">
-                <a href="/">
+                <a href="/" style="white-space:nowrap">
                     首页
                 </a>
             </li>
             
             <li class="menu-item">
-                <a href="/archives">
+                <a href="/archives" style="white-space:nowrap">
                     归档
                 </a>
             </li>
             
             <li class="menu-item">
-                <a href="/categories">
+                <a href="/categories" style="white-space:nowrap">
                     分类
                 </a>
             </li>
             
             <li class="menu-item">
-                <a href="/tags">
+                <a href="/tags" style="white-space:nowrap">
                     标签
                 </a>
             </li>
             
             <li class="menu-item">
-                <a href="/about">
+                <a href="/about" style="white-space:nowrap">
                     关于
                 </a>
             </li>
             
             <li class="menu-item">
-                <a href="/contact">
+                <a href="/contact" style="white-space:nowrap">
                     友链
                 </a>
             </li>
@@ -117,7 +117,9 @@
     <div class="logo">
         <div class="logo-icon" aria-hidden="true">
             
-                <span id="eye-ball-l">O</span><span id="mouth">n</span><span id="eye-ball-r">O</span>
+                <div id="eye-ball-l" class="eye-ball-l">O</div>
+                <div id="mouth" class="mouth">n</div>
+                <div id="eye-ball-r" class="eye-ball-r">O</div>
             
         </div>
         
@@ -135,8 +137,6 @@
             let rightEye = setPos(eyeBallRight,e,3);
             let centerMouse = setPos(mouth,e,2);
         },false)
-
-        setInterval(wink, 5000);
     }
     function setPos(item,moveEvent,moveRange){
         let leftX = moveEvent.clientX - (item.offsetLeft - item.offsetWidth / 2);
@@ -154,15 +154,6 @@
     }
     function radius(pos) {
         return Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
-    }
-
-    function wink(){
-        eyeBallLeft.innerText = "—";
-        eyeBallRight.innerText = "—";
-        setTimeout(function(){
-            eyeBallLeft.innerText = "O";
-            eyeBallRight.innerText = "O";
-        },50);
     }
 </script>
             <section class="main">

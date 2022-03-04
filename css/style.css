@@ -91,6 +91,8 @@ header .logo .logo-icon {
   font-size: 60px;
   color: #d7ecff;
   text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 15px #7abcfd;
+  display: flex;
+  justify-content: center;
 }
 header .logo img {
   width: 100px;
@@ -103,11 +105,110 @@ header .logo .title {
   font-family: "SimHei", sans-serif;
   text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 15px #7abcfd;
 }
-header .logo #eye-ball-l,
-header .logo #eye-ball-r,
-header .logo #mouth {
+header .logo .eye-ball-l {
+  transform: scale(1, 1) skew(-2deg);
   position: relative;
   transition: 0.1s;
+  animation: wink-l 5s ease-out infinite;
+}
+header .logo .eye-ball-r {
+  transform: scale(1, 1) skew(2deg);
+  position: relative;
+  transition: 0.1s;
+  animation: wink-r 5s ease-out infinite;
+}
+header .logo .mouth {
+  transform: scale(1.1, 0.7) skew(5deg) translate(0px, 15px);
+  position: relative;
+  transition: 0.1s;
+}
+@-moz-keyframes wink-l {
+  0%, 90% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(-2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+}
+@-webkit-keyframes wink-l {
+  0%, 90% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(-2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+}
+@-o-keyframes wink-l {
+  0%, 90% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(-2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+}
+@keyframes wink-l {
+  0%, 90% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(-2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+}
+@-moz-keyframes wink-r {
+  0%, 90% {
+    transform: scale(1, 1) skew(2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(2deg);
+  }
+}
+@-webkit-keyframes wink-r {
+  0%, 90% {
+    transform: scale(1, 1) skew(2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(2deg);
+  }
+}
+@-o-keyframes wink-r {
+  0%, 90% {
+    transform: scale(1, 1) skew(2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(2deg);
+  }
+}
+@keyframes wink-r {
+  0%, 90% {
+    transform: scale(1, 1) skew(2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(2deg);
+  }
 }
 section.main {
   color: #d7ecff;
@@ -1115,11 +1216,11 @@ figure.highlight table tbody tr td pre .deletion {
   color: #dc322f;
 }
 .about-container {
-  margin-top: 120px;
+  margin-top: 140px;
 }
 @media (max-width: 33.9em) {
   .about-container {
-    margin-top: 60px;
+    margin-top: 80px;
   }
 }
 .about-container .box {
@@ -1127,54 +1228,247 @@ figure.highlight table tbody tr td pre .deletion {
   padding: 8px;
   background: rgba(44,61,75,0.5);
 }
-.about-container .test {
-  position: relative;
+.about-container .box .box-title {
+  width: 100%;
+  font-size: 20px;
+  font-family: "SimHei", sans-serif;
+  text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 15px #7abcfd;
+  margin-bottom: 10px;
 }
-.about-container .test .text-magic {
+.about-container .box .box-body {
+  width: 100%;
+}
+.about-container .box .box-body .typing-text {
+  border-right: 0.1em solid;
+  width: 16.5em;
+  width: 26ch;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 3s steps(26, end), cursor-blink 0.3s step-end infinite alternate;
+}
+.about-container .avatar-container {
+  width: 100%;
+}
+.about-container .avatar-container .logo-icon {
+  display: flex;
+  justify-content: center;
+  border-radius: 200px;
+  margin: 40px;
+  padding: 10px;
+  width: auto;
+  white-space: nowrap;
+  text-align: center;
+  background: rgba(44,61,75,0.5);
+  font-size: 90px;
+  color: #d7ecff;
+  text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 15px #7abcfd;
+}
+.about-container .avatar-container .logo-icon .eye-ball-l {
+  transform: scale(1, 1) skew(-2deg);
+  position: relative;
+  transition: 0.1s;
+  animation: wink-l 5s ease-out infinite;
+}
+.about-container .avatar-container .logo-icon .eye-ball-r {
+  transform: scale(1, 1) skew(2deg);
+  position: relative;
+  transition: 0.1s;
+  animation: wink-r 5s ease-out infinite;
+}
+.about-container .avatar-container .logo-icon .mouth {
+  transform: scale(1.1, 0.7) skew(5deg) translate(0px, 15px);
+  position: relative;
+  transition: 0.1s;
+}
+.about-container .avatar-container .logo-icon:hover .eye-ball-l,
+.about-container .avatar-container .logo-icon:hover .eye-ball-r {
+  transition: 0.1s;
+  animation: mad-eyes 0.2s ease-out forwards;
+}
+@-moz-keyframes wink-l {
+  0%, 90% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(-2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+}
+@-webkit-keyframes wink-l {
+  0%, 90% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(-2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+}
+@-o-keyframes wink-l {
+  0%, 90% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(-2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+}
+@keyframes wink-l {
+  0%, 90% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(-2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(-2deg);
+  }
+}
+@-moz-keyframes wink-r {
+  0%, 90% {
+    transform: scale(1, 1) skew(2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(2deg);
+  }
+}
+@-webkit-keyframes wink-r {
+  0%, 90% {
+    transform: scale(1, 1) skew(2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(2deg);
+  }
+}
+@-o-keyframes wink-r {
+  0%, 90% {
+    transform: scale(1, 1) skew(2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(2deg);
+  }
+}
+@keyframes wink-r {
+  0%, 90% {
+    transform: scale(1, 1) skew(2deg);
+  }
+  91% {
+    transform: scale(1, 0.01) skew(2deg);
+  }
+  93%, 100% {
+    transform: scale(1, 1) skew(2deg);
+  }
+}
+@-moz-keyframes mad-eyes {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 0.9) translate(0px, 5px);
+  }
+}
+@-webkit-keyframes mad-eyes {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 0.9) translate(0px, 5px);
+  }
+}
+@-o-keyframes mad-eyes {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 0.9) translate(0px, 5px);
+  }
+}
+@keyframes mad-eyes {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 0.9) translate(0px, 5px);
+  }
+}
+.about-container .name-container {
+  position: relative;
+  height: 80px;
+  width: 100%;
+}
+.about-container .name-container .binla {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(2.4);
   font-size: 14px;
   font-family: Raleway, Verdana, Arial;
-  color: #fff;
+  color: #d7ecff;
 }
-.about-container .test .text-magic::before {
+.about-container .name-container .binla::before {
   content: attr(data-word);
   position: absolute;
   top: 0;
   left: 0.5px;
   height: 0px;
-  color: rgba(255,255,255,0.9);
+  color: #d7ecff;
   overflow: hidden;
   z-index: 2;
   animation: redShadow 1s ease-in infinite;
   filter: contrast(200%);
-  text-shadow: 1px 0 0 #f00;
+  text-shadow: 1px 0 0 #c77;
 }
-.about-container .test .text-magic::after {
+.about-container .name-container .binla::after {
   content: attr(data-word);
   position: absolute;
   top: 0;
-  left: -3px;
+  left: -2px;
   height: 14px;
   color: rgba(255,255,255,0.8);
   overflow: hidden;
   z-index: 3;
-  background: rgba(0,0,0,0.9);
+  background: #687989;
   animation: redHeight 1.5s ease-out infinite;
-  filter: contrast(200%);
-  text-shadow: -1px 0 0 #0ff;
+  text-shadow: -1px 0 0 #5ac5c5;
   mix-blend-mode: darken;
 }
-.about-container .test .white {
+.about-container .name-container .error-bar {
   position: absolute;
-  left: -10px;
+  left: -2px;
   width: 100%;
   height: 3px;
-  background: #000;
+  background: #687989;
   z-index: 4;
-  animation: whiteMove 3s ease-out infinite;
+  animation: errorMove 3s ease-out infinite;
+}
+.about-container .action-container {
+  width: 100%;
+  margin: 10px 0px;
+  text-align: center;
+}
+.about-container .action-container .action-btn-sm {
+  margin: 0px 5px;
+  border-radius: 10px;
+  padding: 5px 20px;
+  border: 1px solid #d7ecff;
+  transition: 0.3s;
+}
+.about-container .action-container .action-btn-sm:hover {
+  box-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 15px #7abcfd;
 }
 @-moz-keyframes redShadow {
   20% {
@@ -1222,19 +1516,19 @@ figure.highlight table tbody tr td pre .deletion {
 }
 @-moz-keyframes redHeight {
   20% {
-    height: 42px;
-  }
-  35% {
     height: 12px;
   }
+  35% {
+    height: 0px;
+  }
   50% {
-    height: 40px;
+    height: 10px;
   }
   60% {
-    height: 20px;
+    height: 0px;
   }
   70% {
-    height: 34px;
+    height: 14px;
   }
   80% {
     height: 22px;
@@ -1245,19 +1539,19 @@ figure.highlight table tbody tr td pre .deletion {
 }
 @-webkit-keyframes redHeight {
   20% {
-    height: 42px;
-  }
-  35% {
     height: 12px;
   }
+  35% {
+    height: 0px;
+  }
   50% {
-    height: 40px;
+    height: 10px;
   }
   60% {
-    height: 20px;
+    height: 0px;
   }
   70% {
-    height: 34px;
+    height: 14px;
   }
   80% {
     height: 22px;
@@ -1268,19 +1562,19 @@ figure.highlight table tbody tr td pre .deletion {
 }
 @-o-keyframes redHeight {
   20% {
-    height: 42px;
-  }
-  35% {
     height: 12px;
   }
+  35% {
+    height: 0px;
+  }
   50% {
-    height: 40px;
+    height: 10px;
   }
   60% {
-    height: 20px;
+    height: 0px;
   }
   70% {
-    height: 34px;
+    height: 14px;
   }
   80% {
     height: 22px;
@@ -1291,19 +1585,19 @@ figure.highlight table tbody tr td pre .deletion {
 }
 @keyframes redHeight {
   20% {
-    height: 42px;
-  }
-  35% {
     height: 12px;
   }
+  35% {
+    height: 0px;
+  }
   50% {
-    height: 40px;
+    height: 10px;
   }
   60% {
-    height: 20px;
+    height: 0px;
   }
   70% {
-    height: 34px;
+    height: 14px;
   }
   80% {
     height: 22px;
@@ -1312,71 +1606,147 @@ figure.highlight table tbody tr td pre .deletion {
     height: 0px;
   }
 }
-@-moz-keyframes whiteMove {
-  8% {
-    top: 38px;
+@-moz-keyframes errorMove {
+  20% {
+    top: 10px;
   }
-  14% {
+  35% {
+    top: 1px;
+  }
+  40% {
+    top: 3px;
+  }
+  50% {
     top: 8px;
   }
-  20% {
-    top: 42px;
+  60% {
+    top: 10px;
   }
-  32% {
-    top: 2px;
+  70% {
+    top: 5px;
   }
-  99% {
-    top: 30px;
+  80% {
+    top: 10px;
+  }
+  100% {
+    top: 0px;
   }
 }
-@-webkit-keyframes whiteMove {
-  8% {
-    top: 38px;
+@-webkit-keyframes errorMove {
+  20% {
+    top: 10px;
   }
-  14% {
+  35% {
+    top: 1px;
+  }
+  40% {
+    top: 3px;
+  }
+  50% {
     top: 8px;
   }
-  20% {
-    top: 42px;
+  60% {
+    top: 10px;
   }
-  32% {
-    top: 2px;
+  70% {
+    top: 5px;
   }
-  99% {
-    top: 30px;
+  80% {
+    top: 10px;
+  }
+  100% {
+    top: 0px;
   }
 }
-@-o-keyframes whiteMove {
-  8% {
-    top: 38px;
+@-o-keyframes errorMove {
+  20% {
+    top: 10px;
   }
-  14% {
+  35% {
+    top: 1px;
+  }
+  40% {
+    top: 3px;
+  }
+  50% {
     top: 8px;
   }
-  20% {
-    top: 42px;
+  60% {
+    top: 10px;
   }
-  32% {
-    top: 2px;
+  70% {
+    top: 5px;
   }
-  99% {
-    top: 30px;
+  80% {
+    top: 10px;
+  }
+  100% {
+    top: 0px;
   }
 }
-@keyframes whiteMove {
-  8% {
-    top: 38px;
+@keyframes errorMove {
+  20% {
+    top: 10px;
   }
-  14% {
+  35% {
+    top: 1px;
+  }
+  40% {
+    top: 3px;
+  }
+  50% {
     top: 8px;
   }
-  20% {
-    top: 42px;
+  60% {
+    top: 10px;
   }
-  32% {
-    top: 2px;
+  70% {
+    top: 5px;
   }
-  99% {
-    top: 30px;
+  80% {
+    top: 10px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+@-moz-keyframes typing {
+  from {
+    width: 0;
+  }
+}
+@-webkit-keyframes typing {
+  from {
+    width: 0;
+  }
+}
+@-o-keyframes typing {
+  from {
+    width: 0;
+  }
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+@-moz-keyframes cursor-blink {
+  50% {
+    border-color: transparent;
+  }
+}
+@-webkit-keyframes cursor-blink {
+  50% {
+    border-color: transparent;
+  }
+}
+@-o-keyframes cursor-blink {
+  50% {
+    border-color: transparent;
+  }
+}
+@keyframes cursor-blink {
+  50% {
+    border-color: transparent;
   }
 }
