@@ -63,11 +63,17 @@ var alphaDust = function () {
         $('.archive-post').css({opacity: 0});
         TweenMax.staggerTo('.archive-post', 0.4, {opacity: 1}, 0.15);
     }
+    
+    function displayTagAndCat(){
+        $('.tag-cat').css({opacity: 0});
+        TweenMax.staggerTo('.tag-cat', 0.6, {opacity: 1}, 0.15);
+    }
 
     return {
         initPostHeader: initPostHeader,
         initMenu: initMenu,
-        displayArchives: displayArchives
+        displayArchives: displayArchives,
+        displayTagAndCat: displayTagAndCat
     };
 }();
 
@@ -76,4 +82,5 @@ $(document).ready(function () {
     alphaDust.initPostHeader();
     alphaDust.initMenu();
     alphaDust.displayArchives();
+    alphaDust.displayTagAndCat();
 });
