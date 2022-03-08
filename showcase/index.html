@@ -14,7 +14,7 @@
     
 
     
-        <meta property="og:title" content="关于"/>
+        <meta property="og:title" content="展示柜"/>
     
 
     
@@ -34,7 +34,7 @@
     
 
     
-    <title>关于 - Binla Blog</title>
+    <title>展示柜 - Binla Blog</title>
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -103,50 +103,20 @@
             <div class="container">
                 <div class="row">
     <div class="col-sm-12">
-        <section class="main about-container">
-            <div class="row">
-                <div class="col-sm-12 col-xl-4">
-                    <div class="box">
-                        <div class="avatar-container">
-                            <div class="logo-icon">
-                                <div id="eye-ball-l" class="eye-ball-l">O</div>
-                                <div id="mouth" class="mouth">n</div>
-                                <div id="eye-ball-r" class="eye-ball-r">O</div>
-                            </div>
-                        </div>
-                        <div class="name-container">
-                            <div class="binla" data-word="Binla">
-                                Binla
-                                <div class="error-bar"></div>
-                            </div>
-                        </div>
-                        <div class="action-container">
-                            <a target="_blank" rel="noopener" href="https://github.com/BinlaSmile" title="Github" class="action-btn-sm"><i class="fa fa-github"></i></a>
-                            <a href="mailto:BinlaSmi@outlook.com" title="Mail" class="action-btn-sm"><i class="fa fa-envelope"></i></a>
-                            <a target="_blank" rel="noopener" href="https://steamcommunity.com/profiles/76561198263642463" title="Steam" class="action-btn-sm"><i class="fa fa-steam-square"></i></a>
-                            <a target="_blank" rel="noopener" href="https://music.163.com/user/home?id=57793301" title="网易云音乐" class="action-btn-sm"><i class="fa fa-music"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-xl-8">
-                    <div class="box">
-                        <div class="box-title">简单的介绍</div>
-                        <div class="box-body">
-                            <div class="typing-text">Hi！这里是Binla！一个喜欢游戏、绘画和音乐的软件开发工程师。</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-xl-8">
-                    <div class="box">
-                        <div class="box-title">最近在干啥</div>
-                        <div class="box-body">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
+        <header>
+    <div class="logo">
+        <div class="logo-icon" aria-hidden="true">
+            
+                <div id="eye-ball-l" class="eye-ball-l">O</div>
+                <div id="mouth" class="mouth">n</div>
+                <div id="eye-ball-r" class="eye-ball-r">O</div>
+            
+        </div>
+        
     </div>
-</div>
+</header>
+
 <script>
     var eyeBallLeft = document.getElementById('eye-ball-l');
     var eyeBallRight = document.getElementById('eye-ball-r');
@@ -154,9 +124,9 @@
     if(eyeBallLeft && eyeBallRight && mouth){
         addEventListener('mousemove', function(e) {
             var e = e || window.event;
-            let leftEye = setPos(eyeBallLeft,e,5);
-            let rightEye = setPos(eyeBallRight,e,5);
-            let centerMouse = setPos(mouth,e,4);
+            let leftEye = setPos(eyeBallLeft,e,3);
+            let rightEye = setPos(eyeBallRight,e,3);
+            let centerMouse = setPos(mouth,e,2);
         },false)
     }
     function setPos(item,moveEvent,moveRange){
@@ -177,6 +147,12 @@
         return Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
     }
 </script>
+
+        <section class="main">
+        </section>
+
+    </div>
+</div>
             </div>
             <footer class="footer-content">
     <div class="container">
