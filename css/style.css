@@ -1897,9 +1897,11 @@ figure.highlight table tbody tr td pre .deletion {
   margin: 20px 0px 120px 0px;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 .contact-container .contact {
-  min-height: 100px;
+  height: 210px;
+  width: 150px;
   margin: 10px 20px;
   padding: 8px 15px;
   display: inline-block;
@@ -1907,9 +1909,21 @@ figure.highlight table tbody tr td pre .deletion {
   border-bottom: none;
   transition: background 0.3s ease;
 }
+@media (max-width: 47.9em) {
+  .contact-container .contact {
+    height: 180px;
+    width: 120px;
+  }
+}
 .contact-container .contact .contact-pic {
   height: 120px;
   width: 120px;
+}
+@media (max-width: 47.9em) {
+  .contact-container .contact .contact-pic {
+    height: 90px;
+    width: 90px;
+  }
 }
 .contact-container .contact .contact-pic span {
   text-align: center;
@@ -1919,6 +1933,11 @@ figure.highlight table tbody tr td pre .deletion {
   height: 100%;
   width: 100%;
   background: rgba(44,61,75,0.5);
+}
+@media (max-width: 47.9em) {
+  .contact-container .contact .contact-pic span {
+    font-size: 40px;
+  }
 }
 .contact-container .contact .contact-pic img {
   border-radius: 5px;
