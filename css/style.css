@@ -1918,6 +1918,7 @@ figure.highlight table tbody tr td pre .deletion {
 .contact-container .contact .contact-pic {
   height: 120px;
   width: 120px;
+  transition: all 0.3s ease;
 }
 @media (max-width: 47.9em) {
   .contact-container .contact .contact-pic {
@@ -1957,4 +1958,7 @@ figure.highlight table tbody tr td pre .deletion {
 }
 .contact-container .contact:hover {
   background: rgba(86,122,151,0.5);
+}
+.contact-container .contact:hover .contact-pic {
+  filter: brightness(115%);
 }
