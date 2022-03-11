@@ -127,6 +127,42 @@
                             <a target="_blank" rel="noopener" href="https://music.163.com/user/home?id=57793301" title="网易云音乐" class="action-btn-sm"><i class="fa fa-music"></i></a>
                         </div>
                     </div>
+                    <div class="box">
+                        <div class="box-title">技能标签</div>
+                        <div class="box-body skill-container">
+                            
+                                <div class="skill">C#</div>
+                            
+                                <div class="skill">Java</div>
+                            
+                                <div class="skill">CSS</div>
+                            
+                                <div class="skill">HTML</div>
+                            
+                                <div class="skill">JavaScript</div>
+                            
+                                <div class="skill">SQL</div>
+                            
+                                <div class="skill">TypeScript</div>
+                            
+                                <div class="skill">CSS</div>
+                            
+                                <div class="skill">.Net</div>
+                            
+                                <div class="skill">Angular</div>
+                            
+                                <div class="skill">AngularJs</div>
+                            
+                                <div class="skill">Vue</div>
+                            
+                                <div class="skill">SQL Server</div>
+                            
+                                <div class="skill">MySQL</div>
+                            
+                                <div class="skill">Redis</div>
+                            
+                        </div>
+                    </div>
                 </div>
                 <div class="col-sm-12 col-xl-8">
                     <div class="box">
@@ -139,7 +175,10 @@
                 <div class="col-sm-12 col-xl-8">
                     <div class="box">
                         <div class="box-title">最近在干啥</div>
-                        <div class="box-body">
+                        <div id="recent-box" class="box-body">
+                            <div class="loading-container">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -148,6 +187,43 @@
     </div>
 </div>
 <script>
+    var res = new XMLHttpRequest();
+    res.open('GET', '/json/BinlaRecentInfo.json', true);
+    res.send();
+    res.onreadystatechange = function () {
+        if (res.readyState == 4 && res.status == 200) {
+            var json = JSON.parse(res.responseText);
+            if(json){
+                var recentBox = document.getElementById('recent-box');
+                var resHtml = "";
+                var steamInfo = json["SteamInfo"];
+                var musicInfo = json["CloudMusicInfo"]
+                resHtml+='<div class="recent-info-container"><div class="recent-info-title">Steam:</div>';
+                steamInfo.forEach(r=>{
+                    resHtml+='<a class="recent-info" target="_blank" rel="noopener" href="https://store.steampowered.com/app/'+r.Appid+' " title="游戏名:'+r.Name+'; 近期玩了'+r.PlayTime2Weeks+'分钟">'
+                                +'<img class="recent-info-pic" src="'+r.ImgIconUrl+'"/>'
+                                +'<div class="recent-info-content">'
+                                    +'<div class="recent-info-name">'+r.Name+'</div>'
+                                    +'<div class="progress-bar" style="width: '+r.PlayScore+'%;"></div>'
+                                +'</div>'
+                            +'</a>';
+                });
+                resHtml+='</div><div class="recent-info-container"><div class="recent-info-title">网易云音乐:</div>';
+                musicInfo.forEach(r=>{
+                    resHtml+='<a class="recent-info" target="_blank" rel="noopener" href="https://music.163.com/song?id='+r.MusicId+'" title="歌曲名:'+r.Name+'; 专辑名:'+r.Description+'">'
+                                +'<img class="recent-info-pic" src="'+r.ImgIconUrl+'"/>'
+                                +'<div class="recent-info-content">'
+                                    +'<div class="recent-info-name">'+r.Name+'</div>'
+                                    +'<div class="progress-bar" style="width: '+r.PlayScore+'%;"></div>'
+                                +'</div>'
+                            +'</a>';
+                });
+                resHtml+='</div>';
+                recentBox.innerHTML = resHtml;
+            }
+        }
+    };
+
     var eyeBallLeft = document.getElementById('eye-ball-l');
     var eyeBallRight = document.getElementById('eye-ball-r');
     var mouth = document.getElementById('mouth');
