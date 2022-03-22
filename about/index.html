@@ -36,15 +36,15 @@
     
     <title>关于 - Binla Blog</title>
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.binla.site/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.binla.site/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+    <link href="//cdn.binla.site/css/featherlight.min.css" type="text/css" rel="stylesheet" />
     
 <link rel="stylesheet" href="/css/style.css">
 
@@ -198,29 +198,23 @@
             if(json){
                 var recentBox = document.getElementById('recent-box');
                 var resHtml = "";
-                var steamInfo = json["SteamInfo"];
-                var musicInfo = json["CloudMusicInfo"]
-                resHtml+='<div class="recent-info-container"><div class="recent-info-title">Steam:</div>';
-                steamInfo.forEach(r=>{
-                    resHtml+='<a class="recent-info" target="_blank" rel="noopener" href="https://store.steampowered.com/app/'+r.Appid+' " title="游戏名:'+r.Name+'; 近期玩了'+r.PlayTime2Weeks+'分钟">'
-                                +'<img class="recent-info-pic" src="'+r.ImgIconUrl+'"/>'
-                                +'<div class="recent-info-content">'
-                                    +'<div class="recent-info-name">'+r.Name+'</div>'
-                                    +'<div class="progress-bar" style="width: '+r.PlayScore+'%;"></div>'
-                                +'</div>'
-                            +'</a>';
+                json.forEach(jr=>{
+                    resHtml+='<div class="recent-info-container"><div class="recent-info-title">'+jr.AppName+':</div>';
+                    if(jr.Records && jr.Records.length>0){
+                        jr.Records.forEach(r=>{
+                            resHtml+='<a class="recent-info" href="'+r.DetailUrl+' " title="'+r.Description+'">'
+                                        +'<img class="recent-info-pic" src="'+r.ImgUrl+'"/>'
+                                        +'<div class="recent-info-content">'
+                                            +'<div class="recent-info-name">'+r.Name+'</div>'
+                                            +'<div class="progress-bar" style="width: '+r.Score+'%;"></div>'
+                                        +'</div>'
+                                    +'</a>';
+                        });
+                    }else{
+                        resHtml+='<div class="recent-non"><i class="fa fa-frown-o"></i> 近期暂无数据...</div>';
+                    }
+                    resHtml+='</div>';
                 });
-                resHtml+='</div><div class="recent-info-container"><div class="recent-info-title">网易云音乐:</div>';
-                musicInfo.forEach(r=>{
-                    resHtml+='<a class="recent-info" target="_blank" rel="noopener" href="https://music.163.com/song?id='+r.MusicId+'" title="歌曲名:'+r.Name+'; 专辑名:'+r.Description+'">'
-                                +'<img class="recent-info-pic" src="'+r.ImgIconUrl+'"/>'
-                                +'<div class="recent-info-content">'
-                                    +'<div class="recent-info-name">'+r.Name+'</div>'
-                                    +'<div class="progress-bar" style="width: '+r.PlayScore+'%;"></div>'
-                                +'</div>'
-                            +'</a>';
-                });
-                resHtml+='</div>';
                 recentBox.innerHTML = resHtml;
             }
         }
@@ -269,9 +263,9 @@
     </div>
 </footer>
         </div>
-        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="//cdn.binla.site/jquery-2.1.4.min.js"></script>
+<script src="//cdn.binla.site/TweenMax.min.js"></script>
+<script src="//cdn.binla.site/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
 
 <script src="/js/main.js"></script>
