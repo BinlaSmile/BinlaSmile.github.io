@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zn-CH">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+        <meta name="description" content="前言为了在自己博客里加一个近况列表，所以去简单了解了一下 Steam 官方的接口文档，这里将会分享其中几个常用接口。
+
+介绍Steam Web API 是由 Valve 官方提供的一个服务接口，可以用来获取 Steam 的游戏数据。
+官方文档: https://developer.valvesoft">
+    
+
+    
+        <meta name="author" content="Binla">
+    
+
+    
+        <meta property="og:title" content="使用SteamApi来获取Steam近期的游戏时长"/>
+    
+
+    
+
+    <meta property="og:site_name" content="Binla Blog"/>
+
+    
+        <meta property="og:type" content="article" />
+    
+
+    
+
+    
+        <meta name="twitter:card" content="summary" />
+    
+    
+    
+
+    
+    <title>使用SteamApi来获取Steam近期的游戏时长 - Binla Blog</title>
+
+    <link href="//cdn.binla.site/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.binla.site/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="//cdn.binla.site/css/featherlight.min.css" type="text/css" rel="stylesheet" />
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body>
+        <div class="layout">
+            <div class="bg-gradient"></div>
+            <div class="bg-pattern"></div>
+            <div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/" style="white-space:nowrap">
+                    首页
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives" style="white-space:nowrap">
+                    笔记
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/showcase" style="white-space:nowrap">
+                    展柜
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about" style="white-space:nowrap">
+                    关于
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact" style="white-space:nowrap">
+                    链接
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<nav>
+    <a href="#menu"></a>
+</nav>
+            <div>
+    
+</div>
+            <div class="container">
+                <div class="row">
+    <div class="col-sm-12">
+
+        <header>
+    <div class="logo">
+        <div class="logo-icon" aria-hidden="true">
+            
+                <div id="eye-ball-l" class="eye-ball-l">O</div>
+                <div id="mouth" class="mouth">n</div>
+                <div id="eye-ball-r" class="eye-ball-r">O</div>
+            
+        </div>
+        
+    </div>
+</header>
+
+<script>
+    var eyeBallLeft = document.getElementById('eye-ball-l');
+    var eyeBallRight = document.getElementById('eye-ball-r');
+    var mouth = document.getElementById('mouth');
+    if(eyeBallLeft && eyeBallRight && mouth){
+        addEventListener('mousemove', function(e) {
+            var e = e || window.event;
+            let leftEye = setPos(eyeBallLeft,e,3);
+            let rightEye = setPos(eyeBallRight,e,3);
+            let centerMouse = setPos(mouth,e,2);
+        },false)
+    }
+    function setPos(item,moveEvent,moveRange){
+        let leftX = moveEvent.clientX - (item.offsetLeft - item.offsetWidth / 2);
+        let leftY = moveEvent.clientY - (item.offsetTop - item.offsetHeight / 2);
+        let leftPointRadius = Math.floor(radius({ x: leftX, y: leftY }));
+        let pointRadian = Math.atan2(leftX, leftY);
+        let itemXY= posXY(moveRange, pointRadian);
+        item.style.cssText = `left:${itemXY.x}px; top: ${itemXY.y}px;`;
+    }
+    function posXY(radius, radian) {
+        return {
+            x: Math.sin(radian) * radius,
+            y: Math.cos(radian) * radius,
+        }
+    }
+    function radius(pos) {
+        return Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
+    }
+</script>
+
+        <section class="main">
+            <div class="post">
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2022/04/01/%E8%8E%B7%E5%8F%96Steam%E8%BF%91%E6%9C%9F%E6%B8%B8%E6%88%8F%E6%97%B6%E9%95%BF/">
+                使用SteamApi来获取Steam近期的游戏时长
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2022-04-01</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/开发/">开发</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>为了在自己博客里加一个近况列表，所以去简单了解了一下 Steam 官方的接口文档，这里将会分享其中几个常用接口。</p>
+<hr>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><B>Steam Web API</b> 是由 <b>Valve</b> 官方提供的一个服务接口，可以用来获取 Steam 的游戏数据。</p>
+<p><b>官方文档:</b> <a target="_blank" rel="noopener" href="https://developer.valvesoftware.com/wiki/Steam_Web_API">https://developer.valvesoftware.com/wiki/Steam_Web_API</a></p>
+<p><b>接口使用条款及说明:</b> <a target="_blank" rel="noopener" href="https://steamcommunity.com/dev/apiterms">https://steamcommunity.com/dev/apiterms</a> </p>
+<hr>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>想要获取自己的数据首先我们需要准备以下两个东西</p>
+<h4 id="1-Steam-Web-API-Token"><a href="#1-Steam-Web-API-Token" class="headerlink" title="1.Steam Web API Token"></a>1.Steam Web API Token</h4><p><b>Token申请:</b> <a target="_blank" rel="noopener" href="https://steamcommunity.com/dev/apikey">https://steamcommunity.com/dev/apikey</a></p>
+<p><img src="https://cdn.binla.site/img/blog/20220401/20220401114059.png"></p>
+<blockquote>
+<p>网页端Steam访问不了个人资料的话，可以尝试挂加速，或者使用羽翼城大佬写的<a target="_blank" rel="noopener" href="https://www.dogfight360.com/blog/686/">steamcommunity 302</a>工具</p>
+</blockquote>
+<p>然后填写上域名并且勾选 ☑️ <b>I agree…</b>，然后点击<b style="color:#92b906">注册</b>即可获得我们所需要的密钥</p>
+<p><img src="https://cdn.binla.site/img/blog/20220401/20220401113319.png"></p>
+<h4 id="2-Steam-Id"><a href="#2-Steam-Id" class="headerlink" title="2.Steam Id"></a>2.Steam Id</h4><p>自己账户的 Steam Id 可以在 Steam 的网页端中获取到</p>
+<p>在网页端右上角账户名位置 点击查看个人资料 </p>
+<p><img src="https://cdn.binla.site/img/blog/20220401/20220401131336.png"></p>
+<p>然后在地址栏中就可以拿到我们账户的 Steam Id 了</p>
+<p><img src="https://cdn.binla.site/img/blog/20220401/20220401131402.png"></p>
+<hr>
+<h2 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h2><ul>
+<li><p>获取近期玩过的游戏(2周内)</p>
+<p>  <b>接口地址示例:</b></p>
+<p>  <code>http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1?key=&#123;你的ApiToken&#125;&amp;steamid=&#123;你的SteamId&#125;</code></p>
+<p>  <b>请求方式:</b></p>
+  <p style="color:#92b906">GET</p>
+
+<p>  <b>请求参数:</b></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+<th>必填</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>你的WebApiToken</td>
+<td>是</td>
+</tr>
+<tr>
+<td>steamid</td>
+<td>你的SteamId</td>
+<td>是</td>
+</tr>
+<tr>
+<td>count</td>
+<td>需要返回的游戏数量(一般不需要设置)</td>
+<td>否</td>
+</tr>
+<tr>
+<td>format</td>
+<td>返回消息体的类型 json(默认)\ xml \ vdf</td>
+<td>否</td>
+</tr>
+</tbody></table>
+<p>  <b>返回消息体示例:</b></p>
+  <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;response&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;total_count&quot;</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">&quot;games&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;appid&quot;</span>: <span class="number">1418630</span>,</span><br><span class="line">                <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Dread Hunger&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;playtime_2weeks&quot;</span>: <span class="number">113</span>,</span><br><span class="line">                <span class="attr">&quot;playtime_forever&quot;</span>: <span class="number">425</span>,</span><br><span class="line">                <span class="attr">&quot;img_icon_url&quot;</span>: <span class="string">&quot;8208301d8aeaa4804e8a8c6786c0780c83590cfa&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;playtime_windows_forever&quot;</span>: <span class="number">425</span>,</span><br><span class="line">                <span class="attr">&quot;playtime_mac_forever&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;playtime_linux_forever&quot;</span>: <span class="number">0</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  <b>返回体参数:</b></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>total_count</td>
+<td>返回的游戏总数</td>
+</tr>
+<tr>
+<td>games</td>
+<td>游戏列表</td>
+</tr>
+<tr>
+<td>appid</td>
+<td>游戏的唯一标识</td>
+</tr>
+<tr>
+<td>name</td>
+<td>游戏名</td>
+</tr>
+<tr>
+<td>playtime_2weeks</td>
+<td>近两周游玩时长(分钟)</td>
+</tr>
+<tr>
+<td>playtime_forever</td>
+<td>游玩总时长(分钟)</td>
+</tr>
+<tr>
+<td>img_icon_url</td>
+<td>游戏缩略图的文件名</td>
+</tr>
+<tr>
+<td>playtime_windows_forever</td>
+<td>Windows上游玩总时长(分钟)</td>
+</tr>
+<tr>
+<td>playtime_mac_forever</td>
+<td>Mac上游玩总时长(分钟)</td>
+</tr>
+<tr>
+<td>playtime_linux_forever</td>
+<td>Linux上游玩总时长(分钟)</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>获取游戏缩略图</p>
+<p>  通过刚才的接口，我们已经可以拿到对应游戏 <code>appid</code> 以及游戏的<code>img_icon_url</code></p>
+<p>  然后我们可以通过访问如下地址拿到对应游戏的缩略图</p>
+<p>  <code>http://media.steampowered.com/steamcommunity/public/images/apps/&#123;appid&#125;/&#123;img_icon_url&#125;.jpg</code></p>
+<p>  这样的话我们就可以直接用在img标签的src里了</p>
+<p>  例:</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://media.steampowered.com/steamcommunity/public/images/apps/&#123;appid&#125;/&#123;img_icon_url&#125;.jpg&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="其他常用接口"><a href="#其他常用接口" class="headerlink" title="其他常用接口"></a>其他常用接口</h2><ul>
+<li><p>GetOwnedGames 获取已拥有的游戏列表</p>
+<p>  <b>接口地址示例:</b></p>
+<p>  <code>http://api.steampowered.com/IPlayerService/GetOwnedGames/v1?key=&#123;你的ApiToken&#125;&amp;steamid=&#123;你的SteamId&#125;&amp;include_appinfo=1</code></p>
+<p>  <b>请求方式:</b></p>
+  <p style="color:#92b906">GET</p>
+
+<p>  <b>请求参数:</b></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+<th>必填</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>你的WebApiToken</td>
+<td>是</td>
+</tr>
+<tr>
+<td>steamid</td>
+<td>你的SteamId</td>
+<td>是</td>
+</tr>
+<tr>
+<td>include_appinfo</td>
+<td>是否需要包含游戏详情(游戏名、缩略图等) 默认0</td>
+<td>否</td>
+</tr>
+<tr>
+<td>include_played_free_games</td>
+<td>是否需要包含免费游戏 默认0</td>
+<td>否</td>
+</tr>
+<tr>
+<td>format</td>
+<td>返回消息体的类型 json(默认)\ xml \ vdf</td>
+<td>否</td>
+</tr>
+<tr>
+<td>appids_filter</td>
+<td>指定返回一组游戏，可传入多个游戏appid (例:”input_json={appids_filter: [440, 500]}”)<a target="_blank" rel="noopener" href="https://developer.valvesoftware.com/wiki/Steam_Web_API#Calling_Service_interfaces">📌传参规则</a></td>
+<td>否</td>
+</tr>
+</tbody></table>
+<p>  <b>返回消息体示例:</b></p>
+  <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;response&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;game_count&quot;</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">&quot;games&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;appid&quot;</span>: <span class="number">4000</span>,</span><br><span class="line">                <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Garry&#x27;s Mod&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;playtime_forever&quot;</span>: <span class="number">1284</span>,</span><br><span class="line">                <span class="attr">&quot;img_icon_url&quot;</span>: <span class="string">&quot;4a6f25cfa2426445d0d9d6e233408de4d371ce8b&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;has_community_visible_stats&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">&quot;playtime_windows_forever&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;playtime_mac_forever&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;playtime_linux_forever&quot;</span>: <span class="number">0</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  <b>返回体参数:</b></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>total_count</td>
+<td>返回的游戏总数</td>
+</tr>
+<tr>
+<td>games</td>
+<td>游戏列表</td>
+</tr>
+<tr>
+<td>appid</td>
+<td>游戏的唯一标识</td>
+</tr>
+<tr>
+<td>name</td>
+<td>游戏名</td>
+</tr>
+<tr>
+<td>playtime_forever</td>
+<td>游玩总时长(分钟)</td>
+</tr>
+<tr>
+<td>img_icon_url</td>
+<td>游戏缩略图的文件名</td>
+</tr>
+<tr>
+<td>has_community_visible_stats</td>
+<td>表示该游戏有成就统计页面(没什么用)</td>
+</tr>
+<tr>
+<td>playtime_windows_forever</td>
+<td>Windows上游玩总时长(分钟)</td>
+</tr>
+<tr>
+<td>playtime_mac_forever</td>
+<td>Mac上游玩总时长(分钟)</td>
+</tr>
+<tr>
+<td>playtime_linux_forever</td>
+<td>Linux上游玩总时长(分钟)</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+            </div>
+            <footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    Copyright © 2022 | Theme by <a target="_blank" rel="noopener" href="http://www.codeblocq.com/">Jonathan Klughertz</a> | Theme Remake by <a target="_blank" rel="noopener" href="https://github.com/BinlaSmile">Binla</a> |  Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+                </div>
+                 
+            </div>
+        </div>
+    </div>
+</footer>
+        </div>
+        <script src="//cdn.binla.site/jquery-2.1.4.min.js"></script>
+<script src="//cdn.binla.site/TweenMax.min.js"></script>
+<script src="//cdn.binla.site/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+    </body>
+
+</html>

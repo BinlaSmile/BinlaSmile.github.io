@@ -1184,14 +1184,14 @@ footer.footer-content .beian .beian-pic {
   width: 18px;
 }
 code {
-  color: #a9b7c6;
-  background: rgba(144,144,144,0.1);
+  color: #e1dba0;
+  background: rgba(44,61,75,0.5);
 }
 figure.highlight {
   font-family: monospace;
-  color: #a9b7c6;
+  color: #e1dba0;
   border-top: 1px solid #d7ecff;
-  background: rgba(144,144,144,0.1);
+  background: rgba(44,61,75,0.5);
   overflow-y: auto;
   margin: 1.5em 0;
 }
