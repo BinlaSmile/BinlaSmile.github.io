@@ -74,6 +74,17 @@ a:hover {
     height: 60px;
   }
 }
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(44,61,75,0.5);
+}
+::-webkit-scrollbar-thumb {
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, #a9b7c6), color-stop(0.72, #a9b7c6), color-stop(0.86, #a9b7c6));
+}
+::-webkit-scrollbar-thumb:hover {
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, #d7ecff), color-stop(0.72, #d7ecff), color-stop(0.86, #d7ecff));
+}
 header {
   padding: 100px 0px;
 }
@@ -86,6 +97,10 @@ header .logo a:link,
 header .logo a:visited,
 header .logo a:active {
   border-bottom: none;
+}
+header .logo .logo-img {
+  height: 140px;
+  width: 140px;
 }
 header .logo .logo-icon {
   font-size: 60px;
@@ -949,7 +964,7 @@ section.main .post .content .video-container embed {
   font-size: 1.5em;
   background: rgba(44,61,75,0.5);
   border-bottom: none;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 .archive-container .archive-tab a.tab-title:hover {
   background: rgba(86,122,151,0.5);
@@ -1254,10 +1269,10 @@ figure.highlight table tbody tr td pre .phpdoc,
 figure.highlight table tbody tr td pre .tex .formula,
 figure.highlight table tbody tr td pre .regexp,
 figure.highlight table tbody tr td pre .hexcolor {
-  color: #6897bb;
+  color: #74b2e1;
 }
 figure.highlight table tbody tr td pre .string {
-  color: #6a8759;
+  color: #83b168;
 }
 figure.highlight table tbody tr td pre .title,
 figure.highlight table tbody tr td pre .localvars,
@@ -1268,7 +1283,7 @@ figure.highlight table tbody tr td pre .identifier,
 figure.highlight table tbody tr td pre .vhdl,
 figure.highlight table tbody tr td pre .literal,
 figure.highlight table tbody tr td pre .id {
-  color: #268bd2;
+  color: #109dff;
 }
 figure.highlight table tbody tr td pre .attribute,
 figure.highlight table tbody tr td pre .variable,
@@ -2123,78 +2138,53 @@ figure.highlight table tbody tr td pre .deletion {
 .contact-container .contact:hover .contact-pic {
   filter: brightness(115%);
 }
+.showcase-top {
+  min-height: 50px;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: space-around;
+}
+.showcase-top a.top-box {
+  margin: 0px 5px;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 20px;
+  width: 100%;
+  background: rgba(44,61,75,0.5);
+  border-bottom: none;
+  transition: all 0.3s ease;
+}
+.showcase-top a.top-box:hover {
+  background: rgba(86,122,151,0.5);
+}
 .showcase-container {
   min-height: 200px;
   margin-bottom: 120px;
   background: rgba(44,61,75,0.5);
   padding: 15px;
-  position: relative;
-  animation: expand 0.6s ease forwards;
 }
 @media (max-width: 33.9em) {
   .showcase-container {
     margin-bottom: 60px;
   }
 }
-.showcase-container:before {
-  position: absolute;
-  padding: 30px;
-  top: -15px;
-  left: -15px;
-  content: "  ";
-  border-left: 1px solid #d7ecff;
-  border-top: 1px solid #d7ecff;
-  transition: left 0.3s ease;
+.back-top {
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  padding: 12px;
+  position: fixed;
+  right: 2em;
+  bottom: 1.5em;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d7ecff;
+  background: rgba(44,61,75,0.5);
+  transition: all 0.3s ease;
+  opacity: 0;
 }
-@media (max-width: 33.9em) {
-  .showcase-container:before {
-    display: none;
-  }
-}
-.showcase-container:after {
-  position: absolute;
-  content: "  ";
-  padding: 30px;
-  bottom: -15px;
-  right: -15px;
-  border-right: 1px solid #d7ecff;
-  border-bottom: 1px solid #d7ecff;
-  transition: right 0.3s ease;
-}
-@media (max-width: 33.9em) {
-  .showcase-container:after {
-    display: none;
-  }
-}
-@-moz-keyframes expand {
-  0% {
-    margin-top: 50px;
-  }
-  100% {
-    margin-top: 0px;
-  }
-}
-@-webkit-keyframes expand {
-  0% {
-    margin-top: 50px;
-  }
-  100% {
-    margin-top: 0px;
-  }
-}
-@-o-keyframes expand {
-  0% {
-    margin-top: 50px;
-  }
-  100% {
-    margin-top: 0px;
-  }
-}
-@keyframes expand {
-  0% {
-    margin-top: 50px;
-  }
-  100% {
-    margin-top: 0px;
-  }
+.back-top:hover {
+  background: rgba(86,122,151,0.5);
 }

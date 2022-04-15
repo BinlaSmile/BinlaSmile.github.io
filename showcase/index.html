@@ -97,9 +97,27 @@
 <nav>
     <a href="#menu"></a>
 </nav>
-            <div>
-    
+            <div class="back-top">
+    <i class="fa fa-chevron-up"></i>
 </div>
+
+<script>
+    var backTop = document.querySelector(".back-top");
+    var time = null;
+    window.onscroll = function () {
+        backTop.style.opacity = (document.documentElement.scrollTop <= 240)? 0 : 1;
+    };  
+    backTop.onclick = function () {
+        var step = document.documentElement.scrollTop;
+        time = window.setInterval(function () {
+            step -= 100;
+            if (step <= 0) {
+                window.clearInterval(time);
+            }
+            window.scrollTo(0, step);
+        }, 10);
+    };
+</script>
             <div class="container">
                 
 <div class="row">
@@ -148,6 +166,9 @@
     }
 </script>
         <section class="main">
+            <div class="showcase-top">
+                <a class="top-box" href="/cola-diary">🐱 可乐的成长日记 ✨</a>
+            </div>
             <div class="showcase-container">
                 
             </div>
