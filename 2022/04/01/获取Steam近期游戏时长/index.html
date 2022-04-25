@@ -105,24 +105,6 @@
             <div class="back-top">
     <i class="fa fa-chevron-up"></i>
 </div>
-
-<script>
-    var backTop = document.querySelector(".back-top");
-    var time = null;
-    window.onscroll = function () {
-        backTop.style.opacity = (document.documentElement.scrollTop <= 240)? 0 : 1;
-    };  
-    backTop.onclick = function () {
-        var step = document.documentElement.scrollTop;
-        time = window.setInterval(function () {
-            step -= 100;
-            if (step <= 0) {
-                window.clearInterval(time);
-            }
-            window.scrollTo(0, step);
-        }, 10);
-    };
-</script>
             <div class="container">
                 <div class="row">
     <div class="col-sm-12">
@@ -139,37 +121,6 @@
         
     </div>
 </header>
-
-<script>
-    var eyeBallLeft = document.getElementById('eye-ball-l');
-    var eyeBallRight = document.getElementById('eye-ball-r');
-    var mouth = document.getElementById('mouth');
-    if(eyeBallLeft && eyeBallRight && mouth){
-        addEventListener('mousemove', function(e) {
-            var e = e || window.event;
-            let leftEye = setPos(eyeBallLeft,e,3);
-            let rightEye = setPos(eyeBallRight,e,3);
-            let centerMouse = setPos(mouth,e,2);
-        },false)
-    }
-    function setPos(item,moveEvent,moveRange){
-        let leftX = moveEvent.clientX - (item.offsetLeft - item.offsetWidth / 2);
-        let leftY = moveEvent.clientY - (item.offsetTop - item.offsetHeight / 2);
-        let leftPointRadius = Math.floor(radius({ x: leftX, y: leftY }));
-        let pointRadian = Math.atan2(leftX, leftY);
-        let itemXY= posXY(moveRange, pointRadian);
-        item.style.cssText = `left:${itemXY.x}px; top: ${itemXY.y}px;`;
-    }
-    function posXY(radius, radian) {
-        return {
-            x: Math.sin(radian) * radius,
-            y: Math.cos(radian) * radius,
-        }
-    }
-    function radius(pos) {
-        return Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
-    }
-</script>
 
         <section class="main">
             <div class="post">
@@ -198,27 +149,27 @@
         
 
         <!-- Post Content -->
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>为了在自己博客里加一个近况列表，所以去简单了解了一下 Steam 官方的接口文档，这里将会分享其中几个常用接口。</p>
+        <h2><span id="前言">前言</span></h2><p>为了在自己博客里加一个近况列表，所以去简单了解了一下 Steam 官方的接口文档，这里将会分享其中几个常用接口。</p>
 <hr>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><B>Steam Web API</b> 是由 <b>Valve</b> 官方提供的一个服务接口，可以用来获取 Steam 的游戏数据。</p>
+<h2><span id="介绍">介绍</span></h2><p><b>Steam Web API</b> 是由 <b>Valve</b> 官方提供的一个服务接口，可以用来获取 Steam 的游戏数据。</p>
 <p><b>官方文档:</b> <a target="_blank" rel="noopener" href="https://developer.valvesoftware.com/wiki/Steam_Web_API">https://developer.valvesoftware.com/wiki/Steam_Web_API</a></p>
 <p><b>接口使用条款及说明:</b> <a target="_blank" rel="noopener" href="https://steamcommunity.com/dev/apiterms">https://steamcommunity.com/dev/apiterms</a> </p>
 <hr>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>想要获取自己的数据首先我们需要准备以下两个东西</p>
-<h4 id="1-Steam-Web-API-Token"><a href="#1-Steam-Web-API-Token" class="headerlink" title="1.Steam Web API Token"></a>1.Steam Web API Token</h4><p><b>Token申请:</b> <a target="_blank" rel="noopener" href="https://steamcommunity.com/dev/apikey">https://steamcommunity.com/dev/apikey</a></p>
+<h2><span id="准备">准备</span></h2><p>想要获取自己的数据首先我们需要准备以下两个东西</p>
+<h4><span id="1steam-web-api-token">1.Steam Web API Token</span></h4><p><b>Token申请:</b> <a target="_blank" rel="noopener" href="https://steamcommunity.com/dev/apikey">https://steamcommunity.com/dev/apikey</a></p>
 <p><img src="https://cdn.binla.site/img/blog/20220401/20220401114059.png"></p>
 <blockquote>
 <p>网页端Steam访问不了个人资料的话，可以尝试挂加速，或者使用羽翼城大佬写的<a target="_blank" rel="noopener" href="https://www.dogfight360.com/blog/686/">steamcommunity 302</a>工具</p>
 </blockquote>
 <p>然后填写上域名并且勾选 ☑️ <b>I agree…</b>，然后点击<b style="color:#92b906">注册</b>即可获得我们所需要的密钥</p>
 <p><img src="https://cdn.binla.site/img/blog/20220401/20220401113319.png"></p>
-<h4 id="2-Steam-Id"><a href="#2-Steam-Id" class="headerlink" title="2.Steam Id"></a>2.Steam Id</h4><p>自己账户的 Steam Id 可以在 Steam 的网页端中获取到</p>
+<h4><span id="2steam-id">2.Steam Id</span></h4><p>自己账户的 Steam Id 可以在 Steam 的网页端中获取到</p>
 <p>在网页端右上角账户名位置 点击查看个人资料 </p>
 <p><img src="https://cdn.binla.site/img/blog/20220401/20220401131336.png"></p>
 <p>然后在地址栏中就可以拿到我们账户的 Steam Id 了</p>
 <p><img src="https://cdn.binla.site/img/blog/20220401/20220401131402.png"></p>
 <hr>
-<h2 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h2><ul>
+<h2><span id="获取">获取</span></h2><ul>
 <li><p>获取近期玩过的游戏(2周内)</p>
 <p>  <b>接口地址示例:</b></p>
 <p>  <code>http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1?key=&#123;你的ApiToken&#125;&amp;steamid=&#123;你的SteamId&#125;</code></p>
@@ -317,7 +268,7 @@
   <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://media.steampowered.com/steamcommunity/public/images/apps/&#123;appid&#125;/&#123;img_icon_url&#125;.jpg&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
-<h2 id="其他常用接口"><a href="#其他常用接口" class="headerlink" title="其他常用接口"></a>其他常用接口</h2><ul>
+<h2><span id="其他常用接口">其他常用接口</span></h2><ul>
 <li><p>GetOwnedGames 获取已拥有的游戏列表</p>
 <p>  <b>接口地址示例:</b></p>
 <p>  <code>http://api.steampowered.com/IPlayerService/GetOwnedGames/v1?key=&#123;你的ApiToken&#125;&amp;steamid=&#123;你的SteamId&#125;&amp;include_appinfo=1</code></p>
@@ -448,9 +399,9 @@
     </div>
 </footer>
         </div>
-        <script src="//cdn.binla.site/jquery-2.1.4.min.js"></script>
-<script src="//cdn.binla.site/TweenMax.min.js"></script>
-<script src="//cdn.binla.site/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="//cdn.binla.site/js/jquery-2.1.4.min.js"></script>
+<script src="//cdn.binla.site/js/TweenMax.min.js"></script>
+<script src="//cdn.binla.site/js/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
 
 <script src="/js/main.js"></script>

@@ -104,24 +104,6 @@ NVM 简介在前端开发过程中，会经常遇到node">
             <div class="back-top">
     <i class="fa fa-chevron-up"></i>
 </div>
-
-<script>
-    var backTop = document.querySelector(".back-top");
-    var time = null;
-    window.onscroll = function () {
-        backTop.style.opacity = (document.documentElement.scrollTop <= 240)? 0 : 1;
-    };  
-    backTop.onclick = function () {
-        var step = document.documentElement.scrollTop;
-        time = window.setInterval(function () {
-            step -= 100;
-            if (step <= 0) {
-                window.clearInterval(time);
-            }
-            window.scrollTo(0, step);
-        }, 10);
-    };
-</script>
             <div class="container">
                 <div class="row">
     <div class="col-sm-12">
@@ -138,37 +120,6 @@ NVM 简介在前端开发过程中，会经常遇到node">
         
     </div>
 </header>
-
-<script>
-    var eyeBallLeft = document.getElementById('eye-ball-l');
-    var eyeBallRight = document.getElementById('eye-ball-r');
-    var mouth = document.getElementById('mouth');
-    if(eyeBallLeft && eyeBallRight && mouth){
-        addEventListener('mousemove', function(e) {
-            var e = e || window.event;
-            let leftEye = setPos(eyeBallLeft,e,3);
-            let rightEye = setPos(eyeBallRight,e,3);
-            let centerMouse = setPos(mouth,e,2);
-        },false)
-    }
-    function setPos(item,moveEvent,moveRange){
-        let leftX = moveEvent.clientX - (item.offsetLeft - item.offsetWidth / 2);
-        let leftY = moveEvent.clientY - (item.offsetTop - item.offsetHeight / 2);
-        let leftPointRadius = Math.floor(radius({ x: leftX, y: leftY }));
-        let pointRadian = Math.atan2(leftX, leftY);
-        let itemXY= posXY(moveRange, pointRadian);
-        item.style.cssText = `left:${itemXY.x}px; top: ${itemXY.y}px;`;
-    }
-    function posXY(radius, radian) {
-        return {
-            x: Math.sin(radian) * radius,
-            y: Math.cos(radian) * radius,
-        }
-    }
-    function radius(pos) {
-        return Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
-    }
-</script>
 
         <section class="main">
             <div class="post">
@@ -197,30 +148,30 @@ NVM 简介在前端开发过程中，会经常遇到node">
         
 
         <!-- Post Content -->
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前阵子，公司甩给我一个Ionic项目让我研究，但是项目除了源码外没任何说明，苦于寻找对应版本node的我不断的安装各种版本的node进行尝试，寻找过程中发现了nvm这个工具，出于尝试下下来使用发现还挺好用，所以在这里把nvm的基本操作记录一下。</p>
+        <h2><span id="前言">前言</span></h2><p>前阵子，公司甩给我一个Ionic项目让我研究，但是项目除了源码外没任何说明，苦于寻找对应版本node的我不断的安装各种版本的node进行尝试，寻找过程中发现了nvm这个工具，出于尝试下下来使用发现还挺好用，所以在这里把nvm的基本操作记录一下。</p>
 <hr>
-<h2 id="NVM-简介"><a href="#NVM-简介" class="headerlink" title="NVM 简介"></a>NVM 简介</h2><p>在前端开发过程中，会经常遇到node的版本问题，不同的项目使用不同的 node.js 版本。<br>直接安装却只能安装和使用一个版本。所以这里我们可以使用nvm来安装和管理不同版本的 node.js。</p>
+<h2><span id="nvm-简介">NVM 简介</span></h2><p>在前端开发过程中，会经常遇到node的版本问题，不同的项目使用不同的 node.js 版本。<br>直接安装却只能安装和使用一个版本。所以这里我们可以使用nvm来安装和管理不同版本的 node.js。</p>
 <p>nvm 是 Mac 下的一个 node.js 管理工具。可以通过 nvm 来安装和切换不同版本的 node.js。如果是 Windows 可以使用 nvmw 或者 nvm-windows，这里我主要介绍 nvm-windows 的安装方法</p>
 <hr>
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>Github: <a target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows/releases">https://github.com/coreybutler/nvm-windows/releases</a></p>
+<h2><span id="下载">下载</span></h2><p>Github: <a target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows/releases">https://github.com/coreybutler/nvm-windows/releases</a></p>
 <p>备注:</p>
 <p>nvm-setup.zip：安装版</p>
 <p>nvm-noinstall.zip：绿色免安装版，但需要手动配置。</p>
 <p><img src="https://cdn.binla.site/img/blog/20220331/20220331214917.png"></p>
 <hr>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>下载后解压</p>
+<h2><span id="安装">安装</span></h2><p>下载后解压</p>
 <p>双击nvm-setup.exe 进行安装</p>
 <p>这里须注意，这里选择的是 node.js 的虚拟路径，当你在 nvm 中切换版本时，nvm 会将对应版本的 node.js 路径映射到这里。</p>
 <p><img src="https://cdn.binla.site/img/blog/20220331/20220331215914.png"></p>
 <p>如果你的电脑之前安装过 node.js ，在 nvm 安装过程中会自动检测到，并提醒你是否需要把该版本挪进 nvm 进行统一管理，这里我们选 “是”</p>
 <p><img src="https://cdn.binla.site/img/blog/20220331/20220331220025.png"></p>
 <hr>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>安装好后我们打开管理员终端(切换 node.js 版本时需要管理员权限)</p>
+<h2><span id="使用">使用</span></h2><p>安装好后我们打开管理员终端(切换 node.js 版本时需要管理员权限)</p>
 <p><img src="https://cdn.binla.site/img/blog/20220331/20220331220906.png"></p>
 <p>然后输入 <code>nvm</code> 并回车，我们就可以看到 nvm 的各项功能</p>
 <p><img src="https://cdn.binla.site/img/blog/20220331/20220331221247.png"></p>
 <hr>
-<h3 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h3><p><code>nvm list</code> 查看当前已安装的 node.js 版本列表，版本前面带<code>*</code>号的则为当前系统所使用的版本</p>
+<h3><span id="常用指令">常用指令</span></h3><p><code>nvm list</code> 查看当前已安装的 node.js 版本列表，版本前面带<code>*</code>号的则为当前系统所使用的版本</p>
 <p><code>nvm list available</code> 查看所有可下载版本</p>
 <p><code>nvm install &lt;node.js版本号&gt;</code> 下载对应版本的 node.js (例: <code>nvm install 16.14.2</code> )</p>
 <p><code>nvm use &lt;node.js版本号&gt;</code> 切换当前系统中已安装过的 node.js 版本(需要管理员权限)</p>
@@ -260,9 +211,9 @@ NVM 简介在前端开发过程中，会经常遇到node">
     </div>
 </footer>
         </div>
-        <script src="//cdn.binla.site/jquery-2.1.4.min.js"></script>
-<script src="//cdn.binla.site/TweenMax.min.js"></script>
-<script src="//cdn.binla.site/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="//cdn.binla.site/js/jquery-2.1.4.min.js"></script>
+<script src="//cdn.binla.site/js/TweenMax.min.js"></script>
+<script src="//cdn.binla.site/js/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
 
 <script src="/js/main.js"></script>

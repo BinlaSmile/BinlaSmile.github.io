@@ -2187,4 +2187,5 @@ figure.highlight table tbody tr td pre .deletion {
 }
 .back-top:hover {
   background: rgba(86,122,151,0.5);
+  text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 15px #7abcfd;
 }

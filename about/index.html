@@ -100,24 +100,6 @@
             <div class="back-top">
     <i class="fa fa-chevron-up"></i>
 </div>
-
-<script>
-    var backTop = document.querySelector(".back-top");
-    var time = null;
-    window.onscroll = function () {
-        backTop.style.opacity = (document.documentElement.scrollTop <= 240)? 0 : 1;
-    };  
-    backTop.onclick = function () {
-        var step = document.documentElement.scrollTop;
-        time = window.setInterval(function () {
-            step -= 100;
-            if (step <= 0) {
-                window.clearInterval(time);
-            }
-            window.scrollTo(0, step);
-        }, 10);
-    };
-</script>
             <div class="container">
                 <div class="row">
     <div class="col-sm-12">
@@ -281,9 +263,9 @@
     </div>
 </footer>
         </div>
-        <script src="//cdn.binla.site/jquery-2.1.4.min.js"></script>
-<script src="//cdn.binla.site/TweenMax.min.js"></script>
-<script src="//cdn.binla.site/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="//cdn.binla.site/js/jquery-2.1.4.min.js"></script>
+<script src="//cdn.binla.site/js/TweenMax.min.js"></script>
+<script src="//cdn.binla.site/js/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
 
 <script src="/js/main.js"></script>

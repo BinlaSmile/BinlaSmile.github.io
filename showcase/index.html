@@ -100,24 +100,6 @@
             <div class="back-top">
     <i class="fa fa-chevron-up"></i>
 </div>
-
-<script>
-    var backTop = document.querySelector(".back-top");
-    var time = null;
-    window.onscroll = function () {
-        backTop.style.opacity = (document.documentElement.scrollTop <= 240)? 0 : 1;
-    };  
-    backTop.onclick = function () {
-        var step = document.documentElement.scrollTop;
-        time = window.setInterval(function () {
-            step -= 100;
-            if (step <= 0) {
-                window.clearInterval(time);
-            }
-            window.scrollTo(0, step);
-        }, 10);
-    };
-</script>
             <div class="container">
                 
 <div class="row">
@@ -134,37 +116,6 @@
         
     </div>
 </header>
-
-<script>
-    var eyeBallLeft = document.getElementById('eye-ball-l');
-    var eyeBallRight = document.getElementById('eye-ball-r');
-    var mouth = document.getElementById('mouth');
-    if(eyeBallLeft && eyeBallRight && mouth){
-        addEventListener('mousemove', function(e) {
-            var e = e || window.event;
-            let leftEye = setPos(eyeBallLeft,e,3);
-            let rightEye = setPos(eyeBallRight,e,3);
-            let centerMouse = setPos(mouth,e,2);
-        },false)
-    }
-    function setPos(item,moveEvent,moveRange){
-        let leftX = moveEvent.clientX - (item.offsetLeft - item.offsetWidth / 2);
-        let leftY = moveEvent.clientY - (item.offsetTop - item.offsetHeight / 2);
-        let leftPointRadius = Math.floor(radius({ x: leftX, y: leftY }));
-        let pointRadian = Math.atan2(leftX, leftY);
-        let itemXY= posXY(moveRange, pointRadian);
-        item.style.cssText = `left:${itemXY.x}px; top: ${itemXY.y}px;`;
-    }
-    function posXY(radius, radian) {
-        return {
-            x: Math.sin(radian) * radius,
-            y: Math.cos(radian) * radius,
-        }
-    }
-    function radius(pos) {
-        return Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
-    }
-</script>
         <section class="main">
             <div class="showcase-top">
                 <a class="top-box" href="/cola-diary">🐱 可乐的成长日记 ✨</a>
@@ -189,9 +140,9 @@
     </div>
 </footer>
         </div>
-        <script src="//cdn.binla.site/jquery-2.1.4.min.js"></script>
-<script src="//cdn.binla.site/TweenMax.min.js"></script>
-<script src="//cdn.binla.site/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="//cdn.binla.site/js/jquery-2.1.4.min.js"></script>
+<script src="//cdn.binla.site/js/TweenMax.min.js"></script>
+<script src="//cdn.binla.site/js/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
 
 <script src="/js/main.js"></script>
