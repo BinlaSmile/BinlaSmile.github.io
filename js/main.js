@@ -108,7 +108,7 @@ var alphaDust = function () {
         let leftPointRadius = Math.floor(_radius({ x: leftX, y: leftY }));
         let pointRadian = Math.atan2(leftX, leftY);
         let itemXY= _posXY(moveRange, pointRadian);
-        item.style.cssText = `left:${itemXY.x}px; top: ${itemXY.y}px;`;
+        item.style.cssText = `left:${itemXY.x}px; top: ${itemXY.y}px;`;  
     }
 
     function _posXY(radius, radian) {
