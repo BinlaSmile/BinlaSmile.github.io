@@ -2247,7 +2247,7 @@ figure.highlight table tbody tr td pre .deletion {
 .diary-container .daily-container {
   position: relative;
   margin-left: 128px;
-  height: 215px;
+  height: 315px;
 }
 @media (max-width: 33.9em) {
   .diary-container .daily-container {
@@ -2319,6 +2319,7 @@ figure.highlight table tbody tr td pre .deletion {
   }
 }
 .diary-container .daily-container .daily-info-container .daily-info .daily-text-container .desc {
+  margin-top: 2%;
   height: 85%;
   text-indent: 2em;
   word-wrap: break-word;
