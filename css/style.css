@@ -66,6 +66,49 @@ a:hover {
 .btn:active {
   background: #62b4ff;
 }
+.carousel {
+  height: 100%;
+}
+.carousel .carousel-indicators li {
+  background-color: #d7ecff;
+}
+.carousel .carousel-inner {
+  height: 100%;
+}
+.carousel .carousel-inner .carousel-item {
+  height: 100%;
+}
+.carousel-img-box {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.featherlight .featherlight-content {
+  background: transparent;
+}
+@media (max-width: 47.9em) {
+  .featherlight .featherlight-content {
+    padding: 30px 10px 0;
+  }
+}
+@media (max-width: 61.9em) {
+  .featherlight .featherlight-content {
+    padding: 40px 10px 0;
+  }
+}
+.featherlight .featherlight-content .featherlight-close {
+  color: #d7ecff;
+  cursor: pointer;
+  transition: text-shadow 0.3s ease;
+  text-decoration: none;
+  background: transparent;
+}
+.featherlight .featherlight-content .featherlight-close:hover {
+  text-shadow: 0 0 1px #fff, 0 0 3px #fff, 0 0 7px #7abcfd;
+}
 .push {
   height: 150px;
 }
@@ -77,6 +120,11 @@ a:hover {
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
+  background-color: rgba(44,61,75,0.5);
+}
+div::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
   background-color: rgba(44,61,75,0.5);
 }
 ::-webkit-scrollbar-thumb {
@@ -819,19 +867,6 @@ section.main .post-more .action-btn:hover .prefix {
 }
 section.main .post-more .action-btn:hover .suffix {
   left: -60px;
-}
-.featherlight .featherlight-content {
-  background: transparent;
-}
-.featherlight .featherlight-content .featherlight-close {
-  color: #d7ecff;
-  cursor: pointer;
-  transition: text-shadow 0.3s ease;
-  text-decoration: none;
-  background: transparent;
-}
-.featherlight .featherlight-content .featherlight-close:hover {
-  text-shadow: 0 0 1px #fff, 0 0 3px #fff, 0 0 7px #7abcfd;
 }
 section.main .post .content h1,
 section.main .post .content h2,
@@ -2212,12 +2247,12 @@ figure.highlight table tbody tr td pre .deletion {
 .diary-container .daily-container {
   position: relative;
   margin-left: 128px;
-  height: 200px;
+  height: 215px;
 }
 @media (max-width: 33.9em) {
   .diary-container .daily-container {
     margin-left: 32px;
-    height: 400px;
+    height: 475px;
   }
 }
 .diary-container .daily-container:before {
@@ -2271,10 +2306,41 @@ figure.highlight table tbody tr td pre .deletion {
   height: 100%;
   transition: all 0.3s ease;
 }
+.diary-container .daily-container .daily-info-container .daily-info .daily-text-container .date {
+  font-size: 1em;
+  font-weight: 700;
+  color: #d7ecff;
+  text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 15px #7abcfd;
+}
+@media (max-width: 33.9em) {
+  .diary-container .daily-container .daily-info-container .daily-info .daily-text-container .date {
+    text-align: center;
+    font-size: 1.5em;
+  }
+}
+.diary-container .daily-container .daily-info-container .daily-info .daily-text-container .desc {
+  height: 85%;
+  text-indent: 2em;
+  word-wrap: break-word;
+  overflow-y: auto;
+}
+@media (max-width: 33.9em) {
+  .diary-container .daily-container .daily-info-container .daily-info .daily-text-container .desc {
+    height: 80%;
+  }
+}
 .diary-container .daily-container .daily-info-container .daily-info .daily-img-container {
-  width: 70%;
+  margin-left: 2%;
+  width: 68%;
   height: 100%;
-  transition: all 0.3s ease;
+}
+@media (max-width: 33.9em) {
+  .diary-container .daily-container .daily-info-container .daily-info .daily-img-container {
+    margin-left: 0;
+    margin-top: 2%;
+    width: 100%;
+    height: 100%;
+  }
 }
 @media (max-width: 33.9em) {
   .diary-container .daily-container .daily-info-container .daily-info {
@@ -2286,7 +2352,7 @@ figure.highlight table tbody tr td pre .deletion {
   }
   .diary-container .daily-container .daily-info-container .daily-info .daily-img-container {
     width: 100%;
-    height: 70%;
+    height: 100%;
   }
 }
 .diary-container .daily-container:hover .daily-info-container {
